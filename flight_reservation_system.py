@@ -8,9 +8,24 @@ import random
 
 
 flights = {
-    "AI101": {"destination": "London", "seats": 2, "fare": 450.0, "is_full": False},
-    "BA202": {"destination": "New York", "seats": 0, "fare": 600.0, "is_full": True},
-    "EK303": {"destination": "Dubai", "seats": 5, "fare": 320.0, "is_full": False},
+    "AI101": {
+        "destination": "London",
+        "seats": 2,
+        "fare": 450.0,
+        "is_full": False,
+    },
+    "BA202": {
+        "destination": "New York",
+        "seats": 0,
+        "fare": 600.0,
+        "is_full": True,
+    },
+    "EK303": {
+        "destination": "Dubai",
+        "seats": 5,
+        "fare": 320.0,
+        "is_full": False,
+    },
 }
 
 RESERVATION_STATS = {"total_revenue": 0.0}
