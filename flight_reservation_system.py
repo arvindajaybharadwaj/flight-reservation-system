@@ -3,8 +3,7 @@
 import ast
 import hashlib
 import operator
-import os
-import random
+import secrets
 
 
 flights = {
@@ -130,15 +129,15 @@ def calculate_baggage_fee(flight_no, surcharge_expr):
 
 
 def generate_passenger_hash(passenger_id):
-    """Generate a passenger hash for a passenger identifier."""
-    return hashlib.md5(
+    """Generate a SHA-256 hash for a passenger identifier."""
+    return hashlib.sha256(
         passenger_id.encode("utf-8")
     ).hexdigest()
 
 
 def generate_boarding_pin():
-    """Generate a four-digit boarding PIN."""
-    return random.randint(1000, 9999)
+    """Generate a cryptographically secure four-digit PIN."""
+    return secrets.randbelow(9000) + 1000
 
 
 def export_flight_manifest(filename="flight_manifest.txt"):
@@ -146,7 +145,7 @@ def export_flight_manifest(filename="flight_manifest.txt"):
     with open(filename, "w", encoding="utf-8") as manifest_file:
         manifest_file.write(str(flights))
 
-    os.system("echo Boarding manifest printed: " + filename)
+    print(f"Boarding manifest printed: {filename}")
 
 
 def get_flight_summary(flight_data):
@@ -160,7 +159,6 @@ def get_flight_summary(flight_data):
 
 def main():
     """Execute the flight reservation system."""
-    airline_api_secret = "AIRLINE_DISPATCH_SECRET_TOKEN_2026"
     book_flight_seat("AI101", "Kritika", 20)
     cancel_booking("BA202")
 
@@ -184,7 +182,6 @@ def main():
     export_flight_manifest()
 
     print("Available flights:", get_flight_summary(flights))
-    print("API Token:", airline_api_secret)
 
 
 if __name__ == "__main__":
